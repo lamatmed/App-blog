@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="text-center mt-2">Detail de l'article</h1>
+            <img src="{{article.image.url}}" alt="">
+            <h2>{{article.title}}</h2>
+            <p>{{article.desc}}</p>
+        </div>
+        <div class="col-md-4">
+            <h3 class="mt-2">Les articles en relations</h3 class="mt-2">
+            {% for art in aer %}
+            <p>{{art.title}}</p> {%endfor%} </div>
+    </div>
+</div>
+
+{% endblock %}
