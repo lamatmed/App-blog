@@ -12,3 +12,7 @@ def detail(request,id_article):
    articles_en_relation=Article.objects.filter(category=category)
    return render(request,'detail.html',{"article":article,"aer":articles_en_relation})
    
+def search(request):
+   query=request.GET["article"]
+   list_article= Article.objects.filter(title__contains=query)
+   return render(request,"search.html", {"list_articles":list_article})

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}{% block content %}
+<div class="container">
+    <h2>
+        Liste de recharche
+    </h2>
+    {% for article in list_articles %}
+    <li>{{article.title}}</li>
+    <p>article.desc</p>
+    <hr> {% endfor %} {% endblock %}
