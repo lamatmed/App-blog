@@ -1,17 +1,23 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate
 from django.contrib import messages
-
+from .forms import LoginForm
 def login_blog(request):
     if request.method == "POST":
-        username = request.POST["username"] 
-        pwd = request.POST["pwd"] 
-        print ('le nom est:',username)
-        user= authenticate(username=username,password=pwd)
-        if user is not None:
-            return redirect("home")
-            
-        else: 
-            messages.error(request, "Erreur d'autantification")
-            return render(request,"login.html")
-    return render(request,"login.html")
+        form = LoginForm(request.POST)
+        if form.is_valid():
+          username = form.cleaned_data['username']
+          pwd = form.cleaned_data['pwd']
+          user= authenticate(username = username, password = pwd)
+          if user is not None: 
+             return redirect('home')
+          else:
+              messages.error(request,"Authentification echouee")
+              return render(request, 'login.html',{'form':form})
+        else:
+            for field in form.errors:
+             form[field].field.widget.attrs['class'] += 'is-invalid'
+            return render(request, 'login.html',{'form':form})  
+    else: 
+     form = LoginForm()
+     return render(request, 'login.html',{'form':form})
