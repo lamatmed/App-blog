@@ -16,9 +16,13 @@
                     <a class="nav-link disabled ">Mon compte</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
+            <a href="{% url 'login-blog' %}" class="btn btn-info"> Deconnexion</a> {% else %}
+            <a href="{% url 'login-blog' %}" class="btn btn-info"> Connexion</a> {% endif %}
+
             <form class="d-flex input-group w-auto " action="{% url 'search' %}">
-                <input type="search " class="form-control " placeholder="Cherche" aria-label="Search " name="article" />
-                <button data-mdb-ripple-init class="btn btn-outline-primary " type="button " data-mdb-ripple-color="dark ">
+                <input type="search " class="form-control mr-sm-2 " placeholder="Cherche" aria-label="Search " name="article" />
+                <button data-mdb-ripple-init class="btn btn-out line-primary " type="button " data-mdb-ripple-color="dark ">
             Search
           </button>
             </form>
