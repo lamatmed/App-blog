@@ -1,0 +1,21 @@
+{% extends 'patials/base.html' %}{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %} {{form}}
+                        <button class="btn btn-success btn-block mt-2">
+                                           Modifier l'article
+                                    </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
